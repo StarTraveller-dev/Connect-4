@@ -264,6 +264,7 @@ function update(){
 
 /**
  * Check if either player has won by going through each possible win considtion and checking if it returns true.
+ * @return boolean
  */
 function checkWin(){
     var playerKey = Player+1
@@ -306,6 +307,7 @@ function checkWin(){
 
 /**
  * Similar to the checkWin function although is only for checking if the game has ended in a tie.
+ * @return boolean
  */
 function checktie(){
     const allEqual = arr => arr.every(val => val !== 0);
@@ -369,6 +371,7 @@ function hoverHandler(evt) {
 /**
  * Calculate the postion of the mouse relative to the canvas.
  * @param {object} evt - Mouse coordinates
+ * @return Relative coordinates
  */
 function getMousePos(evt) {
     var rect = canvas.getBoundingClientRect();
@@ -381,7 +384,8 @@ function getMousePos(evt) {
 /**
  * Get diagonal elements in array.
  * @param {array} array - Mouse coordinates
-*  @param {boolean} bottomToTop - Mouse coordinates
+ *  @param {boolean} bottomToTop - Mouse coordinates
+ * @return returnArray
  */
 function getDiagonal(array, bottomToTop) {
     var Ylength = array.length;
