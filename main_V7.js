@@ -1,3 +1,6 @@
+/**
+ * Define variables
+ */
 var canvas;
 var ctx;
 var Player; //Which players turn is it
@@ -21,7 +24,9 @@ var instructionButtons = [];
 var gameButtons = [];
 //gameRunning = states.game || gameUpdateObj.updating == true;
 
-//On page load
+/**
+ * Creates Buttons and calls Startup function.
+ */
 window.onload = function() {
     menuButtons[0] = new Button(350-(160/2),100,160,50, '#966d14', 'Start Game', states.game);
     menuButtons[1] = new Button(350-(160/2),170,160,50, '#966d14', 'Instructions', states.instructions);
@@ -32,8 +37,8 @@ window.onload = function() {
 
 //Classes
 /**
- * Test
- * @classdesc Button class used for storing paramiters.
+ * Button class used for storing parameters.
+ * @class
  */
 class Button {
     constructor(xPos,yPos,width,height, fillStyle, text, navigate, shadow) {
