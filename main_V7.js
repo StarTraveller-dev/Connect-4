@@ -35,7 +35,6 @@ window.onload = function() {
     startup();
 }
 
-//Classes
 /**
  * Button class used for storing parameters.
  * @class
@@ -89,8 +88,9 @@ class Button {
     }
 }
 
-//Functions
-//Game Setup Function
+/**
+ * Game Setup Function used for restarting the game.
+ */
 function startup() {
     boardState = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]; //which places are filled
     //boardState = [[0,2,2,1,1,1],[0,1,1,2,2,2],[0,2,2,1,1,1],[0,1,1,2,2,2],[0,2,2,1,1,1],[0,1,1,2,2,2],[0,2,2,1,1,1]]; //which places are filled
@@ -115,6 +115,7 @@ function startup() {
 
 /**
  * Main Game loop that runs every 60 frames
+ * @param {const} gameState - Used to determin what actions the program does
  */
 function main(){
     switch (gameState) {
@@ -139,7 +140,10 @@ function main(){
     }
     requestAnimationFrame(main);
 }
-//Game menu
+
+/**
+ * Draw the game menu on screen.
+ */
 function drawMenu(){
     ctx.beginPath();
     ctx.fillStyle = "#8a7763";
@@ -158,7 +162,9 @@ function drawMenu(){
     ctx.closePath();
 }
 
-//Instructions menu
+/**
+ * Draw the instructions menu on screen.
+ */
 function drawInstructions(){
     ctx.beginPath();
     ctx.fillStyle = "#8a7763";
@@ -180,9 +186,11 @@ function drawInstructions(){
     ctx.closePath();
 }
 
-
 //Primary Game Functions
-//Draw the game board
+/**
+ * Draw the game board.
+ * @param {array} boardState - Used to keep track of the current board state
+ */
 function draw(){
     ctx.fillStyle = "#48565c";
     ctx.fillRect(0,0,800,600);
@@ -211,6 +219,9 @@ function draw(){
     if (timer > 0) {timer--}
 }
 
+/**
+ * Display the games winner.
+ */
 function gameOver()
 {
     ctx.beginPath();
@@ -229,7 +240,9 @@ function gameOver()
         gameButtons[elemnt].draw();
 }
 
-//Update boardState
+/**
+ * Update boardState and call checkWin finction once the counter has finised dropping.
+ */
 function update(){
     if(gameUpdateObj.updating == true && timer==0) {
         var playerKey = Player+1
@@ -249,7 +262,9 @@ function update(){
     }
 }
 
-//Check if either player has won
+/**
+ * Check if either player has won by going through each possible win considtion and checking if it returns true.
+ */
 function checkWin(){
     var playerKey = Player+1
     const allEqual = arr => arr.every(val => val === playerKey);
@@ -289,6 +304,9 @@ function checkWin(){
     return false;
 }
 
+/**
+ * Similar to the checkWin function although is only for checking if the game has ended in a tie.
+ */
 function checktie(){
     const allEqual = arr => arr.every(val => val !== 0);
     //Check for tie condition
@@ -301,7 +319,10 @@ function checktie(){
 
 
 //Sub Functions
-//Click Handler
+/**
+ * Whenever a click event occures this function is called to check if any actions need to be taken. Possible actions are: checking to drop a game counter or clicking a button
+ * @param {object} evt - Mouse click coordinates
+ */
 function clickHandler(evt){
     var mousePos = getMousePos(evt);
     var xPos = Math.floor(mousePos.x/100);
@@ -323,6 +344,10 @@ function clickHandler(evt){
             gameButtons[elemnt].checkClick(mousePos, true);
 }
 //Hover event
+/**
+ * Checks for if the mouse is above the area of a button to enable/disable the drop shadow.
+ * @param {object} evt - Mouse coordinates
+ */
 function hoverHandler(evt) {
     for (elemnt in menuButtons) {
         if (menuButtons[elemnt].checkClick(evt))
@@ -341,7 +366,10 @@ function hoverHandler(evt) {
     }
 }
 
-//Calculate the postion of the mouse relative to the canvas
+/**
+ * Calculate the postion of the mouse relative to the canvas.
+ * @param {object} evt - Mouse coordinates
+ */
 function getMousePos(evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -350,7 +378,11 @@ function getMousePos(evt) {
     };
 }
 
-//Get diagonal elements in array
+/**
+ * Get diagonal elements in array.
+ * @param {array} array - Mouse coordinates
+*  @param {boolean} bottomToTop - Mouse coordinates
+ */
 function getDiagonal(array, bottomToTop) {
     var Ylength = array.length;
     var Xlength = array[0].length;
