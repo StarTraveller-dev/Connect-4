@@ -43,6 +43,14 @@ class Button {
   /**
    * Button constructor.
    * @constructor
+   * @param {float} xPos - Button x position.
+   * @param {float} yPos - Button y position.
+   * @param {float} width - Button width.
+   * @param {float} height - Button height.
+   * @param {string} fillStyle - Colour of the button.
+   * @param {string} text - What the button says.
+   * @param {string} navigate - Where the button navigates to.
+   * @param {boolean} shadow - Drop shadow for buttons.
    */
     constructor(xPos,yPos,width,height, fillStyle, text, navigate, shadow) {
         this.x = xPos;
