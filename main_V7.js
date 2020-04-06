@@ -40,6 +40,10 @@ window.onload = function() {
  * @class
  */
 class Button {
+  /**
+   * Button constructor.
+   * @constructor
+   */
     constructor(xPos,yPos,width,height, fillStyle, text, navigate, shadow) {
         this.x = xPos;
         this.y = yPos;
@@ -50,9 +54,15 @@ class Button {
         this.navigate = navigate;
         this.shadow = shadow || false;
     }
+    /**
+     * Enable/disable shadow property.
+     */
     onHover = function(state) {
         this.shadow = state;
     }
+    /**
+     * Draw a button on screen.
+     */
     draw = function() {
         //Draw shadow
         ctx.beginPath();
@@ -74,6 +84,12 @@ class Button {
         ctx.fillText(this.text, (this.width/2)+this.x, ((this.height/2)+this.y)+(20/2));
         ctx.closePath();
     }
+    /**
+     * Check if click position was within button area.
+     * @param {object} clickPos - The title of the book.
+     * @param {boolean} click - The title of the book.
+     * @return boolean
+     */
     checkClick = function(clickPos, click) {
         if (clickPos.x >= this.x && clickPos.x <= this.x+this.width && clickPos.y >= this.y && clickPos.y <= this.y+this.height) {
             if (click || false) {
@@ -322,7 +338,7 @@ function checktie(){
 
 //Sub Functions
 /**
- * Whenever a click event occures this function is called to check if any actions need to be taken. Possible actions are: checking to drop a game counter or clicking a button
+ * Whenever a click event occures this function is called to check if any actions need to be taken. Possible actions are: checking to drop a game counter or checking if a button has been clicked. This is done though their respective functions which are called.
  * @param {object} evt - Mouse click coordinates
  */
 function clickHandler(evt){
@@ -371,7 +387,7 @@ function hoverHandler(evt) {
 /**
  * Calculate the postion of the mouse relative to the canvas.
  * @param {object} evt - Mouse coordinates
- * @return Relative coordinates
+ * @return Relative coordinates to the game board
  */
 function getMousePos(evt) {
     var rect = canvas.getBoundingClientRect();
@@ -385,7 +401,7 @@ function getMousePos(evt) {
  * Get diagonal elements in array.
  * @param {array} array - Mouse coordinates
  *  @param {boolean} bottomToTop - Mouse coordinates
- * @return returnArray
+ * @return returnArray - array which holds the values for the diagonal gameState
  */
 function getDiagonal(array, bottomToTop) {
     var Ylength = array.length;
