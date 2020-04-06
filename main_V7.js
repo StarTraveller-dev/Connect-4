@@ -32,8 +32,8 @@ window.onload = function() {
 
 //Classes
 /**
- * Button class used for storing paramiters.
- * @class
+ * Test
+ * @classdesc Button class used for storing paramiters.
  */
 class Button {
     constructor(xPos,yPos,width,height, fillStyle, text, navigate, shadow) {
